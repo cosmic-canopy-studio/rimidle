@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpuv8unj2x2fb"]
+
+[ext_resource type="Script" path="res://gui.gd" id="1_p0h4x"]
+[ext_resource type="Texture2D" uid="uid://yvi3xqcv1hcu" path="res://assets/spritesheets/roguelike_base.png" id="2_rpd8h"]
+[ext_resource type="Script" path="res://product.gd" id="2_ymve0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3gec"]
+atlas = ExtResource("2_rpd8h")
+region = Rect2(901, 374, 16, 16)
+
+[node name="Main" type="Node"]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p0h4x")
+
+[node name="Panel" type="Panel" parent="GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainArea" type="MarginContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Action" type="HBoxContainer" parent="GUI/MainArea"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 40
+script = ExtResource("2_ymve0")
+
+[node name="Action" type="Button" parent="GUI/MainArea/Action"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Chop Wood"
+
+[node name="ActionProgress" type="ProgressBar" parent="GUI/MainArea/Action"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 10.0
+
+[node name="CurrentAmount" type="Label" parent="GUI/MainArea/Action"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"
+
+[node name="Icon" type="TextureRect" parent="GUI/MainArea/Action"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_u3gec")
+expand_mode = 3
