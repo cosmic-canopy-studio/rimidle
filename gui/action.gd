@@ -11,10 +11,12 @@ signal action_completed(result: ItemResource)
 @onready var effort := %Effort
 @onready var product_icon := %Icon
 
+
 func _ready():
 	action_progress.max_value = effort_amount
 	product_icon.texture = result.icon
 	effort.text = str(effort_amount)
+
 
 func _process(delta):
 	var gain = gain_rate * delta
@@ -25,4 +27,3 @@ func _process(delta):
 		action_progress.value = remainder
 		return
 	action_progress.value = new_amount
-
