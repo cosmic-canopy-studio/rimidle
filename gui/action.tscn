@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b05oycgxm5mip"]
+
+[ext_resource type="Script" path="res://gui/action.gd" id="1_wcw27"]
+[ext_resource type="Resource" uid="uid://bfm88cy12sv61" path="res://data/wood.tres" id="2_xkon1"]
+[ext_resource type="Texture2D" uid="uid://cyeja8e127578" path="res://assets/textures/wood.atlastex" id="3_pqje2"]
+
+[node name="Action" type="HBoxContainer"]
+size_flags_vertical = 0
+theme_override_constants/separation = 40
+script = ExtResource("1_wcw27")
+result = ExtResource("2_xkon1")
+
+[node name="Action" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Chop Wood"
+
+[node name="ActionProgress" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 10.0
+
+[node name="Effort" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"
+
+[node name="Icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_pqje2")
+expand_mode = 3

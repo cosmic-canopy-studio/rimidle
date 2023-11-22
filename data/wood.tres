@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://bfm88cy12sv61"]
+
+[ext_resource type="Texture2D" uid="uid://cyeja8e127578" path="res://assets/textures/wood.atlastex" id="1_5fdlv"]
+[ext_resource type="Script" path="res://data/item_resource.gd" id="1_ltbgm"]
+
+[resource]
+script = ExtResource("1_ltbgm")
+name = "wood"
+type = "raw_material"
+icon = ExtResource("1_5fdlv")

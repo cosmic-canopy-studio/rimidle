@@ -1,12 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpuv8unj2x2fb"]
+[gd_scene load_steps=6 format=3 uid="uid://dpuv8unj2x2fb"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_p0h4x"]
-[ext_resource type="Texture2D" uid="uid://yvi3xqcv1hcu" path="res://assets/spritesheets/roguelike_base.png" id="2_rpd8h"]
-[ext_resource type="Script" path="res://product.gd" id="2_ymve0"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u3gec"]
-atlas = ExtResource("2_rpd8h")
-region = Rect2(901, 374, 16, 16)
+[ext_resource type="PackedScene" uid="uid://b05oycgxm5mip" path="res://gui/action.tscn" id="2_aq56a"]
+[ext_resource type="Texture2D" uid="uid://cyeja8e127578" path="res://assets/textures/wood.atlastex" id="3_8osvf"]
+[ext_resource type="Script" path="res://gui/item.gd" id="3_58t64"]
+[ext_resource type="Resource" uid="uid://bfm88cy12sv61" path="res://data/wood.tres" id="3_g6fwf"]
 
 [node name="Main" type="Node"]
 
@@ -39,30 +37,35 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="Action" type="HBoxContainer" parent="GUI/MainArea"]
+[node name="VSplitContainer" type="VSplitContainer" parent="GUI/MainArea"]
 layout_mode = 2
+split_offset = 500
+
+[node name="Action" parent="GUI/MainArea/VSplitContainer" instance=ExtResource("2_aq56a")]
+layout_mode = 2
+
+[node name="Item" type="HBoxContainer" parent="GUI/MainArea/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_constants/separation = 40
-script = ExtResource("2_ymve0")
+theme_override_constants/separation = 15
+script = ExtResource("3_58t64")
+item_resource = ExtResource("3_g6fwf")
 
-[node name="Action" type="Button" parent="GUI/MainArea/Action"]
+[node name="Icon" type="TextureRect" parent="GUI/MainArea/VSplitContainer/Item"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Chop Wood"
+texture = ExtResource("3_8osvf")
+expand_mode = 3
 
-[node name="ActionProgress" type="ProgressBar" parent="GUI/MainArea/Action"]
+[node name="Name" type="Label" parent="GUI/MainArea/VSplitContainer/Item"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-max_value = 10.0
+text = "Wood"
 
-[node name="CurrentAmount" type="Label" parent="GUI/MainArea/Action"]
+[node name="Amount" type="Label" parent="GUI/MainArea/VSplitContainer/Item"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "10"
 
-[node name="Icon" type="TextureRect" parent="GUI/MainArea/Action"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = SubResource("AtlasTexture_u3gec")
-expand_mode = 3
+[connection signal="action_completed" from="GUI/MainArea/VSplitContainer/Action" to="GUI" method="_on_action_action_completed"]
