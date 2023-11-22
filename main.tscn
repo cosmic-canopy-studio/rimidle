@@ -8,7 +8,7 @@
 
 [node name="Main" type="Node"]
 
-[node name="GUI" type="Control" parent="."]
+[node name="GUI" type="Control" parent="." node_paths=PackedStringArray("wood_action", "wood_item")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +16,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p0h4x")
+wood_action = NodePath("MainArea/VSplitContainer/TabContainer/Actions/Actions/Action")
+wood_item = NodePath("MainArea/VSplitContainer/BottomArea/Items/Items/Item")
 
 [node name="Panel" type="Panel" parent="GUI"]
 layout_mode = 1
@@ -32,19 +34,57 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
 
 [node name="VSplitContainer" type="VSplitContainer" parent="GUI/MainArea"]
 layout_mode = 2
 split_offset = 500
 
-[node name="Action" parent="GUI/MainArea/VSplitContainer" instance=ExtResource("2_aq56a")]
+[node name="TabContainer" type="TabContainer" parent="GUI/MainArea/VSplitContainer"]
 layout_mode = 2
 
-[node name="Item" type="HBoxContainer" parent="GUI/MainArea/VSplitContainer"]
+[node name="Actions" type="MarginContainer" parent="GUI/MainArea/VSplitContainer/TabContainer"]
+layout_mode = 2
+
+[node name="Actions" type="VBoxContainer" parent="GUI/MainArea/VSplitContainer/TabContainer/Actions"]
+layout_mode = 2
+
+[node name="Headers" type="HBoxContainer" parent="GUI/MainArea/VSplitContainer/TabContainer/Actions/Actions"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Action" type="Label" parent="GUI/MainArea/VSplitContainer/TabContainer/Actions/Actions/Headers"]
+layout_mode = 2
+text = "       Action"
+horizontal_alignment = 1
+
+[node name="Progress" type="Label" parent="GUI/MainArea/VSplitContainer/TabContainer/Actions/Actions/Headers"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "        Progress"
+horizontal_alignment = 1
+
+[node name="Effort" type="Label" parent="GUI/MainArea/VSplitContainer/TabContainer/Actions/Actions/Headers"]
+layout_mode = 2
+text = "Effort"
+
+[node name="Output" type="Label" parent="GUI/MainArea/VSplitContainer/TabContainer/Actions/Actions/Headers"]
+layout_mode = 2
+text = "Output"
+
+[node name="Action" parent="GUI/MainArea/VSplitContainer/TabContainer/Actions/Actions" instance=ExtResource("2_aq56a")]
+layout_mode = 2
+
+[node name="BottomArea" type="TabContainer" parent="GUI/MainArea/VSplitContainer"]
+layout_mode = 2
+
+[node name="Items" type="MarginContainer" parent="GUI/MainArea/VSplitContainer/BottomArea"]
+layout_mode = 2
+
+[node name="Items" type="GridContainer" parent="GUI/MainArea/VSplitContainer/BottomArea/Items"]
+layout_mode = 2
+
+[node name="Item" type="HBoxContainer" parent="GUI/MainArea/VSplitContainer/BottomArea/Items/Items"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -52,20 +92,18 @@ theme_override_constants/separation = 15
 script = ExtResource("3_58t64")
 item_resource = ExtResource("3_g6fwf")
 
-[node name="Icon" type="TextureRect" parent="GUI/MainArea/VSplitContainer/Item"]
+[node name="Icon" type="TextureRect" parent="GUI/MainArea/VSplitContainer/BottomArea/Items/Items/Item"]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_8osvf")
 expand_mode = 3
 
-[node name="Name" type="Label" parent="GUI/MainArea/VSplitContainer/Item"]
+[node name="Name" type="Label" parent="GUI/MainArea/VSplitContainer/BottomArea/Items/Items/Item"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Wood"
 
-[node name="Amount" type="Label" parent="GUI/MainArea/VSplitContainer/Item"]
+[node name="Amount" type="Label" parent="GUI/MainArea/VSplitContainer/BottomArea/Items/Items/Item"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "10"
-
-[connection signal="action_completed" from="GUI/MainArea/VSplitContainer/Action" to="GUI" method="_on_action_action_completed"]

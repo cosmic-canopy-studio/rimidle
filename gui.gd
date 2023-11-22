@@ -1,10 +1,13 @@
 extends Control
 
-@onready var items = {"wood": $MainArea/VSplitContainer/Item}
+@export var wood_action: HBoxContainer
+@export var wood_item: HBoxContainer
+
+@onready var items = {"wood": wood_item}
 
 
 func _ready():
-	pass
+	wood_action.action_completed.connect(_on_action_action_completed)
 
 
 func _on_action_action_completed(result):

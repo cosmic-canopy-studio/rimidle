@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/size/viewport_width=750
 window/size/viewport_height=1134
 
+[gui]
+
+theme/custom="res://assets/themes/default.theme"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

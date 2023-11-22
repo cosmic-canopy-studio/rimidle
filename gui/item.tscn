@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1eoki52it8jk"]
+
+[ext_resource type="Script" path="res://gui/item.gd" id="1_octmn"]
+[ext_resource type="Resource" uid="uid://bfm88cy12sv61" path="res://data/wood.tres" id="2_t3688"]
+[ext_resource type="Texture2D" uid="uid://cyeja8e127578" path="res://assets/textures/wood.atlastex" id="3_6y5fo"]
+
+[node name="Item" type="HBoxContainer"]
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 15
+script = ExtResource("1_octmn")
+item_resource = ExtResource("2_t3688")
+
+[node name="Icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_6y5fo")
+expand_mode = 3
+
+[node name="Name" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Wood"
+
+[node name="Amount" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"
